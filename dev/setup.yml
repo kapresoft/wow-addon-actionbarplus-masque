@@ -14,7 +14,7 @@ manual-changelog: CHANGELOG.md
 #  - But this is the official: https://repos.wowace.com/wow/ace3/trunk
 # LibIconPicker: We just need the interface files
 externals:
-  ThirdParty-Libs/Ace3: https://github.com/WoWUIDev/Ace3
+  #ThirdParty-Libs/Ace3: https://github.com/WoWUIDev/Ace3
 
 ignore:
   - "*.sh"
@@ -22,8 +22,11 @@ ignore:
   - "*.yaml"
   - "*.yml"
   - "*.toc"
+  - "*.toml"
+  - CHANGELOG.md
   - dev
   - doc
+  - ActionbarPlus-Masque
   - ThirdParty-Libs/LibStub/tests
   - ThirdParty-Libs/Ace3/Ace3.lua
   - ThirdParty-Libs/Ace3/Bindings.xml
