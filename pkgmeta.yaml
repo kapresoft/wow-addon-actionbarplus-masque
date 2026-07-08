@@ -1,0 +1,52 @@
+package-as: Gears
+# --------------------------
+enable-nolib-creation: no
+enable-toc-creation: no
+# --------------------------
+license-output: LICENSE.txt
+
+required-dependencies:
+  - ActionbarPlus
+  - Masque
+
+embedded-libraries:
+  - LibStub
+  - Ace3
+
+tools-used:
+  - DevSuite
+  - DebugChatFrame
+  - Bugsack
+  - Bug-Grabber
+
+externals:
+  ActionbarPlus-Masque/ThirdParty/Libs/Ace3: https://github.com/WoWUIDev/Ace3
+
+ignore:
+  - README.md
+  - doc
+  - dev
+  - pkgmeta.yaml
+  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/changelog.txt
+  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/Ace3.lua
+  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/Ace3.toc
+  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/tests
+  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/Bindings.xml
+  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/README.md
+### Ignore Gears-OptionsUI for now
+
+# REQUIRED for CurseForge packager (non-obvious):
+# The LEFT side MUST be <repo-folder>/<addon-folder>
+#   - <addon-folder> MUST be the folder that contains the .toc files
+# The RIGHT side MUST be the addon name:
+#   - Must match the .toc filename (AddonName.toc)
+#   - Must match `package-as`
+#
+# NOTE:
+# CurseForge release.sh (poorly) relies on `move-folders` for *addon discovery*,
+# not just post-processing. If this does not exactly match
+# <repo>/<addon>, `toc_root_paths` will be empty and packaging WILL fail.
+#
+# ⚠️ Do not change unless you also change the repo/addon layout.
+move-folders:
+  ActionbarPlus-Masque/ActionbarPlus-Masque: ActionbarPlus-Masque

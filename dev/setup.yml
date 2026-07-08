@@ -1,0 +1,35 @@
+# This is used for development to pull external libraries.
+# @see also: ./dev/pull-extlib.sh
+# --------------------------
+# cmd: ./dev/release.sh -duz -r ./.release -m _setup.yml
+# Note: This will build in ./.release/_setup directory
+package-as: _setup
+# --------------------------
+manual-changelog: CHANGELOG.md
+
+# Use GitHub because svn repos are slower
+# basepath is ${package-as}
+# Ace3:
+#  - This is faster: https://github.com/WoWUIDev/Ace3
+#  - But this is the official: https://repos.wowace.com/wow/ace3/trunk
+# LibIconPicker: We just need the interface files
+externals:
+  ThirdParty-Libs/Ace3: https://github.com/WoWUIDev/Ace3
+
+ignore:
+  - "*.sh"
+  - "*.md"
+  - "*.yaml"
+  - "*.yml"
+  - "*.toc"
+  - dev
+  - doc
+  - ThirdParty-Libs/LibStub/tests
+  - ThirdParty-Libs/Ace3/Ace3.lua
+  - ThirdParty-Libs/Ace3/Bindings.xml
+  - ThirdParty-Libs/Ace3/changelog.txt
+  - ThirdParty-Libs/Ace3/LICENSE.txt
+
+# Base path is .release/
+move-folders:
+  _setup/ThirdParty-Libs: ../ActionbarPlus-Masque/ThirdParty/Libs
