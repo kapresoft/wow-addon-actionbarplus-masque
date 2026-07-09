@@ -1,9 +1,13 @@
-package-as: Gears
+package-as: ActionbarPlus-Masque
 # --------------------------
 enable-nolib-creation: no
 enable-toc-creation: no
 # --------------------------
 license-output: LICENSE.txt
+
+manual-changelog:
+  filename: CHANGELOG.txt
+  markup-type: markdown
 
 required-dependencies:
   - ActionbarPlus
@@ -19,21 +23,11 @@ tools-used:
   - Bugsack
   - Bug-Grabber
 
-externals:
-  ActionbarPlus-Masque/ThirdParty/Libs/Ace3: https://github.com/WoWUIDev/Ace3
-
 ignore:
   - README.md
-  - doc
   - dev
-  - pkgmeta.yaml
-  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/changelog.txt
-  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/Ace3.lua
-  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/Ace3.toc
-  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/tests
-  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/Bindings.xml
-  - ActionbarPlus-Masque/ThirdParty/Libs/Ace3/README.md
-### Ignore Gears-OptionsUI for now
+  - "*.toml"
+  - "*.yaml"
 
 # REQUIRED for CurseForge packager (non-obvious):
 # The LEFT side MUST be <repo-folder>/<addon-folder>
