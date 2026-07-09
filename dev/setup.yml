@@ -23,16 +23,11 @@ ignore:
   - "*.yml"
   - "*.toc"
   - "*.toml"
-  - CHANGELOG.md
-  - dev
-  - doc
-  - ActionbarPlus-Masque
-  - ThirdParty-Libs/LibStub/tests
-  - ThirdParty-Libs/Ace3/Ace3.lua
-  - ThirdParty-Libs/Ace3/Bindings.xml
-  - ThirdParty-Libs/Ace3/changelog.txt
-  - ThirdParty-Libs/Ace3/LICENSE.txt
+  - "CHANGELOG.txt"
+  - "dev"
+  - "doc"
+  - "ActionbarPlus-Masque"
 
 # Base path is .release/
 move-folders:
-  _setup/ThirdParty-Libs: ../ActionbarPlus-Masque/ThirdParty/Libs
+  #_setup/ThirdParty-Libs: ../ActionbarPlus-Masque/ThirdParty/Libs
