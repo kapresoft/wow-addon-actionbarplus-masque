@@ -5,14 +5,14 @@ Optional integration with the Masque addon for ActionbarPlus button skinning.
 RequiredDeps ensures this addon only loads when both ActionbarPlus-Core and
 Masque are present, so no defensive nil-checks for Masque itself are needed.
 -------------------------------------------------------------------------------]]
-local addon = ...
+local addon, xns = ...
 
---- @class Namespace_ABP_Masque_2_0
-local ns = {}
+--- @type Namespace_ABP_Masque_2_0
+local ns = xns
 ns.name = addon
 ABP_MASQUE_NS = ns
 
-local Masque = LibStub('Masque')
+local Masque = LibStub('Masque') --[[@as Masque_API ]]
 local group = Masque:Group('ActionbarPlus', 'Action Bars')
 
 --[[-----------------------------------------------------------------------------
