@@ -8,12 +8,45 @@ Masque are present, so no defensive nil-checks for Masque itself are needed.
 local addon, xns = ...
 
 --- @type Namespace_ABP_Masque_2_0
-local ns = xns
+local ns = xns; ABP_MASQUE_NS = ns
 ns.name = addon
-ABP_MASQUE_NS = ns
 
-local Masque = LibStub('Masque') --[[@as Masque_API ]]
-local group = Masque:Group('ActionbarPlus', 'Action Bars')
+--[[-----------------------------------------------------------------------------
+Local Vars
+-------------------------------------------------------------------------------]]
+
+local prefixColor = 'FFA635'
+local primary = CreateColorFromRGBHexString(prefixColor)
+local TRACE_NAME = primary:WrapTextInColorCode('ABP_MASQUE')
+
+--- @param logName Name
+--- @param prefix string
+local function __trace(logName, prefix, ...)
+  --- @type EventTrace
+  local et = EventTrace; if not (et and et.LogEvent) then return end
+  local n = primary:WrapTextInColorCode(logName)
+  if prefix then n = n .. '::' .. prefix end
+  et:LogEvent(n, ...)
+end
+
+--- @param prefix Name  @The prefix name
+--- @param ... any      @Print any
+local function t(prefix, ...) __trace(TRACE_NAME, prefix, ...) end
+
+--[[-----------------------------------------------------------------------------
+Methods
+-------------------------------------------------------------------------------]]
+
+local MasqueLib = 'Masque'
+local MASQUE = strupper(MasqueLib)
+
+local Masque = LibStub(MasqueLib) --[[@as Masque_API ]]
+if not Masque then
+  t(MasqueLib, 'WARN', 'Masque is not available'); return
+end
+
+-- group definition
+local group = Masque:Group('ActionbarPlus', 'Buttons')
 
 --[[-----------------------------------------------------------------------------
 Methods
@@ -48,3 +81,23 @@ function ns:RemoveButton(btn) group:RemoveButton(btn) end
 --- Re-applies the current skin to a single button (or all buttons if omitted).
 --- @param btn? Button_ABP_2_0_X
 function ns:ReSkin(btn) group:ReSkin(btn) end
+
+function ns:OpenMasqueSettings()
+  if not self:IsEnabled() then return end
+
+  local ACD = LibStub('AceConfigDialog-3.0', true)
+  if not ACD then return end
+
+  if SlashCmdList and SlashCmdList[MASQUE] then
+    SlashCmdList[MASQUE]('')  -- forces Setup('LoD'), opens to Skins/Global
+    if ACD.OpenFrames[m] then ACD:Close(MASQUE) end
+  end
+
+  C_Timer.After(0.01, function()
+      ACD:Open(MasqueLib)
+      local ok, err = pcall(function()
+        ACD:SelectGroup(MasqueLib, 'Skins', 'ActionbarPlus', 'ActionbarPlus_Buttons')
+      end)
+      if not ok then t('OpenMasqueSettings', 'SelectGroup failed. err=', err) end
+  end)
+end

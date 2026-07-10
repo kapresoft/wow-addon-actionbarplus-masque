@@ -27,5 +27,8 @@ function Namespace_ABP_Masque_2_0:RemoveButton(btn) end
 --- @param btn? Button_ABP_2_0_X
 function Namespace_ABP_Masque_2_0:ReSkin(btn) end
 
+--- Opens the Masque settings dialog, selected to the ActionbarPlus skin group.
+function Namespace_ABP_Masque_2_0:OpenMasqueSettings() end
+
 --- @type Namespace_ABP_Masque_2_0
 ABP_MASQUE_NS = nil
