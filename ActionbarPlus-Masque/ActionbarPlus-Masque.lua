@@ -47,6 +47,7 @@ end
 
 -- group definition
 local group = Masque:Group('ActionbarPlus', 'Buttons')
+if not group then return end
 
 --[[-----------------------------------------------------------------------------
 Methods
