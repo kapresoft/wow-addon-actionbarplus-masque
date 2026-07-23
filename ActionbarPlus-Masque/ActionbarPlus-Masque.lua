@@ -11,6 +11,9 @@ local addon, xns = ...
 local ns = xns; ABP_MASQUE_NS = ns
 ns.name = addon
 
+--- @type Namespace_ABP_2_0
+local cns = ABP_Core_2_0:ns()
+
 --[[-----------------------------------------------------------------------------
 Local Vars
 -------------------------------------------------------------------------------]]
@@ -46,7 +49,10 @@ if not Masque then
 end
 
 -- group definition
-local group = Masque:Group('ActionbarPlus', 'Buttons')
+-- Backwards-compatible: falls back to the literal if an older ActionbarPlus-Core
+-- (predating MasqueAddonName()) is installed alongside this addon.
+local MASQUE_ADDON_NAME = (type(cns.MasqueAddonName) == 'function' and cns:MasqueAddonName()) or 'ActionbarPlus'
+local group = Masque:Group(MASQUE_ADDON_NAME, 'Buttons')
 if not group then return end
 
 --[[-----------------------------------------------------------------------------
@@ -83,7 +89,9 @@ function ns:RemoveButton(btn) group:RemoveButton(btn) end
 --- @param btn? Button_ABP_2_0_X
 function ns:ReSkin(btn) group:ReSkin(btn) end
 
-function ns:OpenMasqueSettings()
+--- @param groupKey? string  -- Masque options-panel group key (Addon.."_"..Group), e.g. from
+--- a layout's GetMasqueGroupKey(). Defaults to the shared 'ActionbarPlus_Buttons' group.
+function ns:OpenMasqueSettings(groupKey)
   if not self:IsEnabled() then return end
 
   local ACD = LibStub('AceConfigDialog-3.0', true)
@@ -97,7 +105,7 @@ function ns:OpenMasqueSettings()
   C_Timer.After(0.01, function()
       ACD:Open(MasqueLib)
       local ok, err = pcall(function()
-        ACD:SelectGroup(MasqueLib, 'Skins', 'ActionbarPlus', 'ActionbarPlus_Buttons')
+        ACD:SelectGroup(MasqueLib, 'Skins', MASQUE_ADDON_NAME, groupKey or (MASQUE_ADDON_NAME .. '_Buttons'))
       end)
       if not ok then t('OpenMasqueSettings', 'SelectGroup failed. err=', err) end
   end)
