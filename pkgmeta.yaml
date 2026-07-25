@@ -5,10 +5,6 @@ enable-toc-creation: no
 # --------------------------
 license-output: LICENSE.txt
 
-manual-changelog:
-  filename: CHANGELOG.txt
-  markup-type: markdown
-
 required-dependencies:
   - ActionbarPlus
   - Masque
