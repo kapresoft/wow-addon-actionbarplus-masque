@@ -1,6 +1,6 @@
 ## Interface: 11508
 ## Version: @project-version@
-## Title: |TInterface/Addons/ActionbarPlus/Core/Assets/Textures/logo-v2-64x:18:18|t Actionbar|cff1784d1Plus|r|cffffffff-Masque|r
+## Title: |TInterface/Addons/ActionbarPlus-Masque/logo-v2-64x:18:18|t Actionbar|cff1784d1Plus|r|cffffffff-Masque|r
 
 ## Author: Antonio W. Lagnada (kapresoft@gmail.com)
 ## Notes: Masque skin support for ActionbarPlus action bars.|n|cff1784d1This addon is provided 'as is' without any warranties. All rights reserved. Redistribution or modification is not permitted.|r

@@ -1,13 +1,14 @@
 ## Interface: 20506, 30403, 40402, 50504, 120007
 ## Version: @project-version@
 ## Title: Actionbar|cff1784d1Plus|r|cffffffff-Masque|r
-## IconTexture: Interface/AddOns/ActionbarPlus-Core/Assets/Textures/logo-v2-64x
+## IconTexture: Interface/AddOns/ActionbarPlus-Masque/logo-v2-64x
 
 ## Author: Antonio W. Lagnada (kapresoft@gmail.com)
 ## Notes: Masque skin support for ActionbarPlus action bars.|n|cff1784d1This addon is provided 'as is' without any warranties. All rights reserved. Redistribution or modification is not permitted.|r
 
 ## DefaultState: enabled
 ## RequiredDeps: ActionbarPlus-Core, Masque
+## Group: ActionbarPlus-Core
 
 ## Category-enUS: Action Bars
 ## Category-deDE: Aktionsleisten
