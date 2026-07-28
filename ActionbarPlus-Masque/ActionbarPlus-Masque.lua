@@ -55,6 +55,14 @@ local MASQUE_ADDON_NAME = (type(cns.MasqueAddonName) == 'function' and cns:Masqu
 local group = Masque:Group(MASQUE_ADDON_NAME, 'Buttons')
 if not group then return end
 
+-- Masque's own Skins UI can enable/disable this group independent of anything
+-- ActionbarPlus does. That resets/re-applies Masque's own textures, but leaves
+-- ActionbarPlus's own per-button visuals stale until the affected bars re-render --
+-- tell BarsUI to do so rather than requiring a /reload.
+group:RegisterCallback(function(_, _, value)
+  cns:a():SendMessage(cns:msg('OnMasqueGroupToggled'), value)
+end, 'Disabled')
+
 --[[-----------------------------------------------------------------------------
 Methods
 -------------------------------------------------------------------------------]]
