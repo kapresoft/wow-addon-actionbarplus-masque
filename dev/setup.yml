@@ -19,8 +19,8 @@ ignore:
   - "*.yml"
   - "*.toc"
   - "*.toml"
-  - "CHANGELOG.txt"
-  - "dev"
-  - "doc"
+  - dev
+  - doc
+  - LICENSE
   - ActionbarPlus-Masque
 
