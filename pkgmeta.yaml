@@ -1,17 +1,13 @@
 package-as: ActionbarPlus-Masque
 # --------------------------
-enable-nolib-creation: no
-enable-toc-creation: no
-# --------------------------
-license-output: LICENSE.txt
+
+manual-changelog:
+  filename: dev/changelog-release.md
+  markup-type: markdown
 
 required-dependencies:
   - ActionbarPlus
   - Masque
-
-embedded-libraries:
-  - LibStub
-  - Ace3
 
 tools-used:
   - DevSuite
