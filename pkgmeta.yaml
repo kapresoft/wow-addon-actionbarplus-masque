@@ -16,9 +16,8 @@ tools-used:
   - Bug-Grabber
 
 ignore:
-  - README.md
-  - CLAUDE.md
   - dev
+  - "*.md"
   - "*.toml"
   - "*.yaml"
 
