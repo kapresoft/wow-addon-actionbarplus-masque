@@ -45,13 +45,15 @@ local MASQUE = strupper(MasqueLib)
 
 local Masque = LibStub(MasqueLib) --[[@as Masque_API ]]
 if not Masque then
-  t(MasqueLib, 'WARN', 'Masque is not available'); return
+  t(MasqueLib, 'WARN', 'Masque is not available')
+  return
 end
 
 -- group definition
 -- Backwards-compatible: falls back to the literal if an older ActionbarPlus-Core
 -- (predating MasqueAddonName()) is installed alongside this addon.
-local MASQUE_ADDON_NAME = (type(cns.MasqueAddonName) == 'function' and cns:MasqueAddonName()) or 'ActionbarPlus'
+local MASQUE_ADDON_NAME = (type(cns.MasqueAddonName) == 'function' and cns:MasqueAddonName())
+  or 'ActionbarPlus'
 local group = Masque:Group(MASQUE_ADDON_NAME, 'Buttons')
 if not group then return end
 
@@ -59,9 +61,10 @@ if not group then return end
 -- ActionbarPlus does. That resets/re-applies Masque's own textures, but leaves
 -- ActionbarPlus's own per-button visuals stale until the affected bars re-render --
 -- tell BarsUI to do so rather than requiring a /reload.
-group:RegisterCallback(function(_, _, value)
-  cns:a():SendMessage(cns:msg('OnMasqueGroupToggled'), value)
-end, 'Disabled')
+group:RegisterCallback(
+  function(_, _, value) cns:a():SendMessage(cns:msg('OnMasqueGroupToggled'), value) end,
+  'Disabled'
+)
 
 --[[-----------------------------------------------------------------------------
 Methods
@@ -74,16 +77,16 @@ function ns:IsEnabled() return group ~= nil end
 function ns:AddButton(btn)
   --- @type table
   local buttonData = {
-    Icon         = btn.icon,
-    Cooldown     = btn.cooldown,
-    Normal       = btn.NormalTexture,
-    Pushed       = btn.PushedTexture,
-    Highlight    = btn.HighlightTexture,
-    Checked      = btn.CheckedTexture,
-    HotKey       = btn.HotKey,
-    Count        = btn.Count,
-    Name         = btn.Name,
-    Border       = btn.Border,
+    Icon = btn.icon,
+    Cooldown = btn.cooldown,
+    Normal = btn.NormalTexture,
+    Pushed = btn.PushedTexture,
+    Highlight = btn.HighlightTexture,
+    Checked = btn.CheckedTexture,
+    HotKey = btn.HotKey,
+    Count = btn.Count,
+    Name = btn.Name,
+    Border = btn.Border,
     AutoCastable = btn.AutoCastable,
   }
   group:AddButton(btn, buttonData)
@@ -106,15 +109,22 @@ function ns:OpenMasqueSettings(groupKey)
   if not ACD then return end
 
   if SlashCmdList and SlashCmdList[MASQUE] then
-    SlashCmdList[MASQUE]('')  -- forces Setup('LoD'), opens to Skins/Global
+    SlashCmdList[MASQUE]('') -- forces Setup('LoD'), opens to Skins/Global
     if ACD.OpenFrames[m] then ACD:Close(MASQUE) end
   end
 
   C_Timer.After(0.01, function()
-      ACD:Open(MasqueLib)
-      local ok, err = pcall(function()
-        ACD:SelectGroup(MasqueLib, 'Skins', MASQUE_ADDON_NAME, groupKey or (MASQUE_ADDON_NAME .. '_Buttons'))
-      end)
-      if not ok then t('OpenMasqueSettings', 'SelectGroup failed. err=', err) end
+    ACD:Open(MasqueLib)
+    local ok, err = pcall(
+      function()
+        ACD:SelectGroup(
+          MasqueLib,
+          'Skins',
+          MASQUE_ADDON_NAME,
+          groupKey or (MASQUE_ADDON_NAME .. '_Buttons')
+        )
+      end
+    )
+    if not ok then t('OpenMasqueSettings', 'SelectGroup failed. err=', err) end
   end)
 end
