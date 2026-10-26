@@ -17,7 +17,7 @@ ActionbarPlus-Masque/
 dev/
   deployer-config.lua   # w-deployer targets (classic-era, classic, classic-anniversary, retail)
   annotations/ActionbarPlus-Masque-Annotations.lua  # EmmyLua @meta types for ns (ABP_MASQUE_NS)
-  release.sh, release-clean.sh, release-with-upload.sh, sha256.sh, setup.yml
+  setup.yml             # packager config used by w-sync-libs
 pkgmeta.yaml            # BigWigsMods packager config (CurseForge/GitHub release packaging)
 .github/workflows/      # release-build.yml (tag push -> CurseForge/GitHub release; manual run for branch builds)
 ```
@@ -54,8 +54,7 @@ w-deployer -c ./dev/deployer-config.lua -qw     # quiet + watch mode
 ### Package a release build locally
 
 ```shell
-./dev/release-clean.sh          # clean .release/ then run the BigWigsMods packager
-./dev/release.sh -dz            # package without upload/zip (what release-clean.sh calls)
+w-rel-clean                     # clean .release/ then run the BigWigsMods packager
 ```
 
 ### Release process
