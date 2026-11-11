@@ -183,26 +183,13 @@ end
 function ns:OpenMasqueSettings(groupKey)
   if not self:IsEnabled() then return end
 
-  local ACD = LibStub('AceConfigDialog-3.0', true)
-  if not ACD then return end
+  local ACD = cns:AceConfigDialog()
 
-  if SlashCmdList and SlashCmdList[MASQUE] then
-    SlashCmdList[MASQUE]('') -- forces Setup('LoD'), opens to Skins/Global
-    if ACD.OpenFrames[m] then ACD:Close(MASQUE) end
-  end
+  SlashCmdList[MASQUE]('') -- forces Setup('LoD'), opens to Skins/Global
 
   C_Timer.After(0.01, function()
     ACD:Open(MasqueLib)
-    local ok, err = pcall(
-      function()
-        ACD:SelectGroup(
-          MasqueLib,
-          'Skins',
-          MASQUE_ADDON_NAME,
-          groupKey or (MASQUE_ADDON_NAME .. '_Buttons')
-        )
-      end
-    )
-    if not ok then t('OpenMasqueSettings', 'SelectGroup failed. err=', err) end
+    local key = groupKey or (MASQUE_ADDON_NAME .. '_Buttons')
+    ACD:SelectGroup(MasqueLib, 'Skins', MASQUE_ADDON_NAME, key)
   end)
 end
