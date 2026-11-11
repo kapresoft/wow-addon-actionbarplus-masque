@@ -15,6 +15,9 @@ local Namespace_ABP_Masque_2_0 = {}
 --- @return boolean
 function Namespace_ABP_Masque_2_0:IsEnabled() end
 
+--- Buttons (Extra) takes the Buttons skin; call when sync turns on
+function Namespace_ABP_Masque_2_0:SyncExtraButtonsSkin() end
+
 --- Adds a button to the Masque skin group.
 --- @param btn Button_ABP_2_0_X
 function Namespace_ABP_Masque_2_0:AddButton(btn) end
